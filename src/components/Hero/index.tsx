@@ -1,5 +1,12 @@
 "use client";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { toast } from "react-toastify";
+
+const encode = (data: { [key: string]: string }) => {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+};
 
 const Hero = () => {
   const [email, setEmail] = useState<string>("");
@@ -8,11 +15,17 @@ const Hero = () => {
     setEmail(e.target.value);
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    // Submit the form over here
     setEmail("");
+    toast.success(`Thank you! You're on our wailist.`);
+    if (email) {
+      fetch("/__forms.html", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({ "form-name": "contact", email: email }),
+      }).catch((error) => alert(error));
+    }
   };
 
   return (
@@ -51,11 +64,18 @@ const Hero = () => {
                 </div>
               </div>
               <div>
-                <form onSubmit={handleSubmit}>
+                <form
+                  name="contact"
+                  method="post"
+                  data-netlify="true"
+                  onSubmit={handleSubmit}
+                >
                   <div className="flex justify-center gap-6">
                     <input
                       type="email"
+                      name="email"
                       value={email}
+                      required
                       onChange={handleEmail}
                       className="w-[418px] rounded-lg bg-[#FFF] px-6 py-4 text-xl text-[#262626]"
                       placeholder="Enter your email"

@@ -10,6 +10,8 @@ import Pricing from "@/components/Pricing";
 import Testimonials from "@/components/Testimonials";
 import Video from "@/components/Video";
 import { Metadata } from "next";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata: Metadata = {
   title: "Qwark | Personalized, Intelligent Investment Journeys",
@@ -31,6 +33,19 @@ export default function Home() {
       <Pricing />
       <Blog />
       <Contact /> */}
+      <ToastContainer
+        position={"top-center"}
+        theme="dark"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        pauseOnFocusLoss={false}
+        closeButton={false}
+        closeOnClick={false}
+        pauseOnHover={false}
+        draggable={false}
+        rtl={false}
+      />
     </>
   );
 }

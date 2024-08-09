@@ -23,6 +23,10 @@ export default function RootLayout({
       <head />
 
       <body className={`bg-[#FCFCFC] dark:bg-black `}>
+        <form name="contact" netlify-honeypot="bot-field" hidden>
+          <input type="email" name="email" />
+        </form>
+
         <Providers>
           <Header />
           {children}
@@ -35,3 +39,4 @@ export default function RootLayout({
 }
 
 import { Providers } from "./providers";
+import { ToastContainer } from "react-toastify";
