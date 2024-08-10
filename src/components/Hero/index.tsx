@@ -70,14 +70,14 @@ const Hero = () => {
                   data-netlify="true"
                   onSubmit={handleSubmit}
                 >
-                  <div className="flex justify-center gap-6">
+                  <div className="flex flex-col justify-center gap-6 md:flex-row">
                     <input
                       type="email"
                       name="email"
                       value={email}
                       required
                       onChange={handleEmail}
-                      className="w-[418px] rounded-lg bg-[#FFF] px-6 py-4 text-xl text-[#262626]"
+                      className="rounded-lg bg-[#FFF] px-6 py-4 text-xl text-[#262626] md:max-w-[418px]"
                       placeholder="Enter your email"
                     />
                     <button
